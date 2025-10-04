@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2299.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Athlete Data App — MVP&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body { font-family: Arial, sans-serif; margin: 20px; background: #0b0f14; color: #e9eef6; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>h1 { font-size: 24px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>h2 { font-size: 18px; margin-top: 20px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.panel { background: #121821; padding: 16px; border-radius: 10px; margin-bottom: 20px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>label { display:block; margin-top:10px; font-size:14px; color:#9fb0c8; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>input, textarea, button { width:100%; padding:8px; margin-top:4px; border-radius:6px; border:1px solid #203045; background:#0b121b; color:#e9eef6; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>button { cursor:pointer; margin-top:10px; background:#132034; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>canvas { max-width:100%; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1&gt;🏉 Athlete Data App — MVP&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;p&gt;Track wellness, GPS, and gym data. Data is saved in your browser (LocalStorage).&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="panel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Wellness Entry&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;Date &lt;input type="date" id="wDate"&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;Sleep Hours &lt;input type="number" id="wSleep"&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;Stress (1-5) &lt;input type="number" id="wStress"&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;Soreness (1-5) &lt;input type="number" id="wSore"&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;Mood (1-5) &lt;input type="number" id="wMood"&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;Weight (kg) &lt;input type="number" id="wWeight"&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="saveWellness()"&gt;Save Wellness&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="panel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;GPS Session&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;Date &lt;input type="date" id="gDate"&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;Distance (m) &lt;input type="number" id="gDist"&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;Top Speed (m/s) &lt;input type="number" id="gTS"&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;RPE (1-10) &lt;input type="number" id="gRPE"&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;Duration (min) &lt;input type="number" id="gDur"&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="saveGPS()"&gt;Save GPS&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="panel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Gym Log&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;Date &lt;input type="date" id="yDate"&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;Lift &lt;input type="text" id="yLift"&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;Reps &lt;input type="number" id="yReps"&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;Weight (kg) &lt;input type="number" id="yW"&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="saveGym()"&gt;Save Gym&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="panel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Weight Trend&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;canvas id="weightChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="panel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;GPS Performance&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;canvas id="gpsChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const S = {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>wellness: JSON.parse(localStorage.getItem('wellness')||'[]'),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gps: JSON.parse(localStorage.getItem('gps')||'[]'),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gym: JSON.parse(localStorage.getItem('gym')||'[]')</p>
+<p class="p1"><span class="Apple-converted-space">    </span>};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const save = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>localStorage.setItem('wellness', JSON.stringify(S.wellness));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>localStorage.setItem('gps', JSON.stringify(S.gps));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>localStorage.setItem('gym', JSON.stringify(S.gym));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>drawAll();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function saveWellness(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const r = {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>date: document.getElementById('wDate').value,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>sleep: +document.getElementById('wSleep').value,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>stress: +document.getElementById('wStress').value,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>sore: +document.getElementById('wSore').value,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mood: +document.getElementById('wMood').value,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>weight: +document.getElementById('wWeight').value</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p1"><span class="Apple-converted-space">      </span>S.wellness.push(r); save();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function saveGPS(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const r = {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>date: document.getElementById('gDate').value,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>dist: +document.getElementById('gDist').value,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ts: +document.getElementById('gTS').value,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>rpe: +document.getElementById('gRPE').value,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>dur: +document.getElementById('gDur').value</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p1"><span class="Apple-converted-space">      </span>r.srpe = r.rpe * r.dur;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>S.gps.push(r); save();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function saveGym(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const r = {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>date: document.getElementById('yDate').value,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>lift: document.getElementById('yLift').value,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>reps: +document.getElementById('yReps').value,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>w: +document.getElementById('yW').value</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p1"><span class="Apple-converted-space">      </span>S.gym.push(r); save();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function drawAll(){ drawWeight(); drawGPS(); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function drawWeight(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const ctx=document.getElementById('weightChart');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(!ctx) return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const d=S.wellness; const labels=d.map(r=&gt;r.date); const vals=d.map(r=&gt;r.weight);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(window.wChart) window.wChart.destroy();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>window.wChart=new Chart(ctx,{type:'line',data:{labels,datasets:[{label:'Weight (kg)',data:vals}]}});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function drawGPS(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const ctx=document.getElementById('gpsChart');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(!ctx) return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const d=S.gps; const labels=d.map(r=&gt;r.date); const dist=d.map(r=&gt;r.dist); const ts=d.map(r=&gt;r.ts);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(window.gChart) window.gChart.destroy();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>window.gChart=new Chart(ctx,{type:'line',data:{labels,datasets:[{label:'Distance (m)',data:dist},{label:'Top Speed (m/s)',data:ts}]}});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>drawAll();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
